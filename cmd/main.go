@@ -19,12 +19,12 @@ func init() {
 func main() {
 	cfg := config.Init()
 
-	dbClient, err := mongo.Open(context.Background(), cfg.DB)
+	db, err := mongo.Open(context.Background(), cfg.DB)
 	if err != nil {
 		logrus.Fatalln(err)
 	}
 
-	repo := repository.New(dbClient.Database(cfg.DB.Name))
+	repo := repository.New(db.Connect())
 	services := service.New(repo)
 	srv := server.New(services)
 
@@ -40,7 +40,7 @@ func main() {
 
 	srv.Stop()
 
-	if err = dbClient.Disconnect(context.Background()); err != nil {
+	if err = db.Close(context.Background()); err != nil {
 		logrus.Errorln(err)
 	}
 }
