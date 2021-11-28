@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/1makarov/go-logger-rpc-example/config"
 	"github.com/1makarov/go-logger-rpc-example/internal/db/mongo"
 	"github.com/1makarov/go-logger-rpc-example/internal/pkg/signaler"
@@ -34,7 +33,7 @@ func main() {
 		}
 	}()
 
-	fmt.Println("logger started")
+	logrus.Infoln("logger started")
 
 	signaler.Wait()
 
