@@ -5,17 +5,10 @@ import (
 	"os"
 )
 
-type (
-	Config struct {
-		Port string
-		DB   mongo.Config
-	}
-
-	GRPCConfig struct {
-		Host string
-		Port string
-	}
-)
+type Config struct {
+	Port string
+	DB   mongo.Config
+}
 
 func Init() *Config {
 	var cfg Config
