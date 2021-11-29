@@ -1,4 +1,4 @@
 ```shell
-git clone https://github.com/1makarov/go-logger-rpc-example
+git clone https://github.com/1makarov/go-logger-grpc-example
 docker-compose up -d --build
 ```
