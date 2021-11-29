@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/1makarov/go-logger-rpc-example/internal/db/mongo"
+	"github.com/1makarov/go-logger-grpc-example/internal/db/mongo"
 	"os"
 )
 

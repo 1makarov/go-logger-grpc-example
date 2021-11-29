@@ -1,4 +1,4 @@
-module github.com/1makarov/go-logger-rpc-example
+module github.com/1makarov/go-logger-grpc-example
 
 go 1.17
 

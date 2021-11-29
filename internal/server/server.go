@@ -2,7 +2,7 @@ package server
 
 import (
 	"fmt"
-	"github.com/1makarov/go-logger-rpc-example/internal/proto"
+	"github.com/1makarov/go-logger-grpc-example/internal/proto"
 	"google.golang.org/grpc"
 	"net"
 )

@@ -1,6 +1,6 @@
 package service
 
-import "github.com/1makarov/go-logger-rpc-example/internal/repository"
+import "github.com/1makarov/go-logger-grpc-example/internal/repository"
 
 type Service struct {
 	*LoggerService

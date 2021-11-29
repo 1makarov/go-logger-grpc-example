@@ -2,9 +2,9 @@ package service
 
 import (
 	"context"
-	"github.com/1makarov/go-logger-rpc-example/internal/proto"
-	"github.com/1makarov/go-logger-rpc-example/internal/repository"
-	"github.com/1makarov/go-logger-rpc-example/internal/types"
+	"github.com/1makarov/go-logger-grpc-example/internal/proto"
+	"github.com/1makarov/go-logger-grpc-example/internal/repository"
+	"github.com/1makarov/go-logger-grpc-example/internal/types"
 )
 
 type LoggerService struct {

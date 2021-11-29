@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	"github.com/1makarov/go-logger-rpc-example/internal/types"
+	"github.com/1makarov/go-logger-grpc-example/internal/types"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 

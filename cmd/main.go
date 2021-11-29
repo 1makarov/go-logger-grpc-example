@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"github.com/1makarov/go-logger-rpc-example/config"
-	"github.com/1makarov/go-logger-rpc-example/internal/db/mongo"
-	"github.com/1makarov/go-logger-rpc-example/internal/pkg/signaler"
-	"github.com/1makarov/go-logger-rpc-example/internal/repository"
-	"github.com/1makarov/go-logger-rpc-example/internal/server"
-	"github.com/1makarov/go-logger-rpc-example/internal/service"
+	"github.com/1makarov/go-logger-grpc-example/config"
+	"github.com/1makarov/go-logger-grpc-example/internal/db/mongo"
+	"github.com/1makarov/go-logger-grpc-example/internal/pkg/signaler"
+	"github.com/1makarov/go-logger-grpc-example/internal/repository"
+	"github.com/1makarov/go-logger-grpc-example/internal/server"
+	"github.com/1makarov/go-logger-grpc-example/internal/service"
 	"github.com/sirupsen/logrus"
 )
 
