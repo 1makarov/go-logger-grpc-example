@@ -1,13 +1,13 @@
 package config
 
 import (
-	"github.com/1makarov/go-logger-grpc-example/internal/db/mongo"
+	"github.com/1makarov/go-logger-grpc-example/internal/mongodb"
 	"os"
 )
 
 type Config struct {
 	Port string
-	DB   mongo.Config
+	DB   mongodb.Config
 }
 
 func Init() *Config {

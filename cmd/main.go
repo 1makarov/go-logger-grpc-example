@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"github.com/1makarov/go-logger-grpc-example/config"
-	"github.com/1makarov/go-logger-grpc-example/internal/db/mongo"
-	"github.com/1makarov/go-logger-grpc-example/internal/pkg/signaler"
+	"github.com/1makarov/go-logger-grpc-example/internal/config"
+	"github.com/1makarov/go-logger-grpc-example/internal/mongodb"
 	"github.com/1makarov/go-logger-grpc-example/internal/repository"
 	"github.com/1makarov/go-logger-grpc-example/internal/server"
-	"github.com/1makarov/go-logger-grpc-example/internal/service"
+	"github.com/1makarov/go-logger-grpc-example/internal/services"
+	"github.com/1makarov/go-logger-grpc-example/pkg/signaler"
 	"github.com/sirupsen/logrus"
 )
 
@@ -17,15 +17,26 @@ func init() {
 
 func main() {
 	cfg := config.Init()
+	ctx := context.Background()
 
-	db, err := mongo.Open(context.Background(), cfg.DB)
+	mongoClient, err := mongodb.Open(context.Background(), cfg.DB)
 	if err != nil {
-		logrus.Fatalln(err)
+		logrus.Errorln(err)
+		return
 	}
+	defer func() {
+		if err = mongoClient.Disconnect(ctx); err != nil {
+			logrus.Errorln(err)
+		}
+	}()
 
-	repo := repository.New(db.Connect())
-	services := service.New(repo)
-	srv := server.New(services)
+	db := mongoClient.Database(cfg.DB.Name)
+
+	repo := repository.New(db)
+	service := services.New(repo)
+
+	srv := server.New(service.Logger)
+	defer srv.Stop()
 
 	go func() {
 		if err = srv.Start(cfg.Port); err != nil {
@@ -33,13 +44,7 @@ func main() {
 		}
 	}()
 
-	logrus.Infoln("logger started")
+	logrus.Infoln("started")
 
 	signaler.Wait()
-
-	srv.Stop()
-
-	if err = db.Close(context.Background()); err != nil {
-		logrus.Errorln(err)
-	}
 }
